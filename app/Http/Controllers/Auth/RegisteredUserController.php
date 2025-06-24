@@ -1,50 +1,66 @@
-<?php
+<x-guest-layout>
+    <form method="POST" action="{{ route('register.store') }}">
+        @csrf
 
-namespace App\Http\Controllers\Auth;
+        <!-- Nombre -->
+        <div class="mt-4">
+            <x-input-label for="name" value="Nombre completo" />
+            <x-text-input id="name" class="block mt-1 w-full" 
+                          type="text" name="name" 
+                          :value="old('name')" required autofocus />
+            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        </div>
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
-use Illuminate\View\View;
+        <!-- Email -->
+        <div class="mt-4">
+            <x-input-label for="email" value="Correo electrónico" />
+            <x-text-input id="email" class="block mt-1 w-full" 
+                          type="email" name="email" 
+                          :value="old('email')" required />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
 
-class RegisteredUserController extends Controller
-{
-    /**
-     * Display the registration view.
-     */
-    public function create(): View
-    {
-        return view('auth.register');
-    }
+        <!-- Teléfono -->
+        <div class="mt-4">
+            <x-input-label for="phone" value="Teléfono" />
+            <x-text-input id="phone" class="block mt-1 w-full" 
+                          type="tel" name="phone" 
+                          :value="old('phone')" required />
+            <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+        </div>
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function store(Request $request): RedirectResponse
-    {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        <!-- Dirección -->
+        <div class="mt-4">
+            <x-input-label for="address" value="Dirección" />
+            <x-text-input id="address" class="block mt-1 w-full" 
+                          type="text" name="address" 
+                          :value="old('address')" required />
+            <x-input-error :messages="$errors->get('address')" class="mt-2" />
+        </div>
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        <!-- Contraseña -->
+        <div class="mt-4">
+            <x-input-label for="password" value="Contraseña" />
+            <x-text-input id="password" class="block mt-1 w-full"
+                          type="password" name="password"
+                          required autocomplete="new-password" />
+            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        </div>
 
-        event(new Registered($user));
+        <!-- Confirmar Contraseña -->
+        <div class="mt-4">
+            <x-input-label for="password_confirmation" value="Confirmar contraseña" />
+            <x-text-input id="password_confirmation" class="block mt-1 w-full"
+                          type="password" name="password_confirmation"
+                          required autocomplete="new-password" />
+            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        </div>
 
-        Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
-    }
-}
+        <!-- Botón de Registro -->
+        <div class="flex items-center justify-end mt-4">
+            <x-primary-button>
+                Registrarse
+            </x-primary-button>
+        </div>
+    </form>
+</x-guest-layout>
