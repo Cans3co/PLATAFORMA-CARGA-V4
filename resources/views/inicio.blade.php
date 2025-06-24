@@ -3,7 +3,7 @@
         <h2 class="text-2xl font-bold text-gray-800">
             {{ __('Página de Inicio Principal') }}
         </h2>
-        <p class="mt-1 text-gray-600">Bienvenido al sistema</p>
+        <p class="mt-1 text-gray-600">Bienvenido a la Plataforma de Carga NAABOL</p>
     </x-slot>
 
     <div class="py-8">
@@ -15,8 +15,8 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 border-b border-gray-200">
                     <h3 class="text-lg font-medium mb-3">Panel de Control</h3>
                     <p class="text-gray-600 mb-4">Accede al dashboard principal del sistema.</p>
-                    <x-primary-button :href="route('dashboard')">
-                        Ir al Dashboard
+                    <x-primary-button :href="route('inicio')">
+                        Ir al Panel Pricipal
                     </x-primary-button>
                 </div>
 
