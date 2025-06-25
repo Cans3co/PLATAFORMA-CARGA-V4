@@ -43,6 +43,10 @@
                                         <i class="fas fa-user-plus mr-2"></i> Registrar Usuarios
                                     </x-nav-link>
                                     @endcan
+
+                                    <x-nav-link :href="route('nosotros.index')" :active="request()->routeIs('nosotros.*')">
+                                        <i class="fas fa-users mr-2"></i> Nosotros
+                                    </x-nav-link>
                                 @endauth
                             </div>
                         </div>
@@ -50,7 +54,6 @@
                         <!-- Menú derecha (autenticación) -->
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
                             @auth
-                                <!-- Menú desplegable del perfil -->
                                 <x-dropdown align="right" width="48">
                                     <x-slot name="trigger">
                                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
@@ -66,19 +69,16 @@
                                             <i class="fas fa-user-circle mr-2"></i> Perfil
                                         </x-dropdown-link>
 
-                                        <!-- Formulario de logout -->
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
                                             <x-dropdown-link :href="route('logout')"
-                                                    onclick="event.preventDefault();
-                                                                this.closest('form').submit();">
+                                                onclick="event.preventDefault(); this.closest('form').submit();">
                                                 <i class="fas fa-sign-out-alt mr-2"></i> Cerrar Sesión
                                             </x-dropdown-link>
                                         </form>
                                     </x-slot>
                                 </x-dropdown>
                             @else
-                                <!-- Links para invitados -->
                                 <div class="space-x-4">
                                     <a href="{{ route('login') }}" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100">
                                         <i class="fas fa-sign-in-alt mr-1"></i> Iniciar Sesión
@@ -112,17 +112,19 @@
                                 <i class="fas fa-user-plus mr-2"></i> Registrar Usuarios
                             </x-responsive-nav-link>
                             @endcan
+
+                            <x-responsive-nav-link :href="route('nosotros.index')" :active="request()->routeIs('nosotros.*')">
+                                <i class="fas fa-users mr-2"></i> Nosotros
+                            </x-responsive-nav-link>
                             
                             <x-responsive-nav-link :href="route('profile.edit')">
                                 <i class="fas fa-user-circle mr-2"></i> Perfil
                             </x-responsive-nav-link>
-                            
-                            <!-- Logout móvil -->
+
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <x-responsive-nav-link :href="route('logout')"
-                                        onclick="event.preventDefault();
-                                                    this.closest('form').submit();">
+                                    onclick="event.preventDefault(); this.closest('form').submit();">
                                     <i class="fas fa-sign-out-alt mr-2"></i> Cerrar Sesión
                                 </x-responsive-nav-link>
                             </form>

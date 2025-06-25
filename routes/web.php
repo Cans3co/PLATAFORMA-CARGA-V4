@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\NosotrosController;
+use App\Http\Controllers\BibliotecaController; // AÑADE ESTA LÍNEA
 use Illuminate\Support\Facades\Route;
 
 // =============================================
@@ -50,6 +52,20 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/profile', 'edit')->name('profile.edit');
             Route::patch('/profile', 'update')->name('profile.update');
             Route::delete('/profile', 'destroy')->name('profile.destroy');
+        });
+
+        // --- Sección Nosotros ---
+        Route::prefix('nosotros')->name('nosotros.')->group(function () {
+            Route::get('/', [NosotrosController::class, 'index'])->name('index');
+            Route::get('/mision-vision', [NosotrosController::class, 'misionVision'])->name('mision-vision');
+            Route::get('/organigrama', [NosotrosController::class, 'organigrama'])->name('organigrama');
+        });
+
+        // --- Sección Biblioteca (NUEVO) ---
+        Route::prefix('biblioteca')->name('biblioteca.')->group(function () {
+            Route::get('/', [BibliotecaController::class, 'index'])->name('index');
+            Route::get('/rab', [BibliotecaController::class, 'rab'])->name('rab');
+            Route::get('/manuales', [BibliotecaController::class, 'manuales'])->name('manuales');
         });
 
         // --- Área de administración (Solo para admins) ---

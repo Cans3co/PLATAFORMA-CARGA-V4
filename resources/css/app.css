@@ -5,3 +5,41 @@
 
 /* Importación de Flowbite */
 @import 'flowbite';
+
+/* Estilos personalizados para la sección Nosotros */
+.prose-lg p {
+    margin-bottom: 1.25em;
+    line-height: 1.7;
+}
+
+.bg-blue-50 {
+    background-color: #eff6ff;
+}
+
+.bg-gray-50 {
+    background-color: #f9fafb;
+}
+
+/* Estilos para el organigrama */
+.organigrama-container {
+    transition: all 0.3s ease;
+}
+
+.organigrama-container:hover {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Asegurar compatibilidad con dark mode */
+@media (prefers-color-scheme: dark) {
+    .bg-blue-50 {
+        background-color: #1e3a8a;
+    }
+    
+    .bg-gray-50 {
+        background-color: #111827;
+    }
+    
+    .prose-lg p {
+        color: #e5e7eb;
+    }
+}
